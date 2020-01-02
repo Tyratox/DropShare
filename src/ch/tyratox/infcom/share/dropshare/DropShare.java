@@ -79,10 +79,12 @@ public class DropShare extends JFrame implements DropTargetListener {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				System.setProperty("java.net.preferIPv4Stack", "true");
+				
 				try {
 					try{
 						System.out.println("Starting Getting Multicast Socket....");
-						group = InetAddress.getByName("224.2.2.3");
+						group = InetAddress.getByName(JOptionPane.showInputDialog("Enter the multicast address"));
 						getSocket = new MulticastSocket(port_udp);
 						getSocket.joinGroup(group);
 						System.out.println("Starting Sending Multicast Socket....");
